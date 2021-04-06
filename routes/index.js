@@ -1,6 +1,5 @@
-var express = require("express");
+const router = require("express").Router();
 const RenderHomePage = require("../controllers/index.controller");
-var router = express.Router();
 
 /* GET home page. */
 router.get("/", RenderHomePage);
