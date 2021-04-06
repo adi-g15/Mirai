@@ -7,9 +7,8 @@ app.set("port", port);
 
 var server = http.createServer(app);
 
-server.listen(port);
+server.listen(port, onListening);
 server.on("error", onError);
-server.on("listening", onListening);
 
 function normalizePort(val) {
   var port = parseInt(val, 10);

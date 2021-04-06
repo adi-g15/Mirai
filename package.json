@@ -1,29 +1,23 @@
 {
   "name": "mirai",
   "version": "10.16.0",
-  "private": true,
   "scripts": {
-    "start": "node ./bin/www"
-  },
-  "engines": {
-    "node": "10.16.0"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "base-64": "^1.0.0",
-    "cheerio": "^1.0.0-rc.3",
-    "cookie-parser": "~1.4.4",
+    "cheerio": "^1.0.0-rc.5",
+    "cookie-parser": "~1.4.5",
     "create-object-url": "^1.0.2",
-    "debug": "~2.6.9",
-    "ejs": "^2.6.1",
-    "express": "~4.16.1",
+    "debug": "~4.3.1",
+    "ejs": "^3.1.6",
+    "express": "~4.17.1",
     "filereader": "^0.10.3",
-    "http-errors": "~1.6.3",
+    "http-errors": "~1.8.0",
     "js-base64": "^3.6.0",
-    "morgan": "~1.9.1",
+    "morgan": "~1.10.0",
     "request": "^2.88.0",
-    "webtorrent": "^0.103.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
+    "webtorrent": "^0.116.1"
   }
 }

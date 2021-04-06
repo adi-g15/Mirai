@@ -5,4 +5,10 @@ Using public sources for fetching data. This solves dependency on heroku
 
 **Website Link**: https://mirai-projectsakura.herokuapp.com/
 
-If you like it you can the original [repo](https://github.com/ProjectSakura/Mirai)'s maintainer on patreon
+## Deployment
+
+You can try the deployment available at `adig15.herokuapp.com`, but that is severely limited, in number of calls allowed, but enough to try
+
+Or deploy your own version ->
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ProjectSakura/mirai)
