@@ -9,7 +9,7 @@ export default function Header() {
       <div id="preloader">
         <img className="logo" src="images/logo3.ico" alt="" width="119" height="58" />
 
-        <div className="text-center" style="color: #fff; margin-top: 60px">
+        <div className="text-center" style={{color: '#fff', marginTop: '60px'}}>
           <h1>Mirai</h1>
         </div>
       </div>
@@ -32,17 +32,17 @@ export default function Header() {
                 </div>
               </div>
               <a href="/"
-              ><img className="logo" src="images/logo3.ico" />
+              ><img className="logo" src="images/logo3.ico" alt="logo" />
                 <span
                   className="whoosh"
-                  style="
-                  font-family: 'Dosis', sans-serif;
-                  font-size: 36px;
-                  color: #ffffff;
-                  font-weight: 700;
-                  display: none;
-                  text-transform: none;
-                "
+                  style={{
+                    fontFamily: "'Dosis', sans-serif",
+                    fontSize: "36px",
+                    color: '#ffffff',
+                    fontWeight: '700',
+                    display: 'none',
+                    textTransform: 'none'
+                  }}
                 >Mirai</span
                 ></a
               >
@@ -54,14 +54,14 @@ export default function Header() {
             >
               <ul className="nav navbar-nav flex-child-menu menu-left">
                 <li className="hidden">
-                  <a href="#page-top"></a>
+                  <a href="#page-top" />
                 </li>
 
                 <li>
                   <a
                     className="animelist"
-                    link="https://www.gogoanime1.com/home/anime-list"
-                    style="font-size: 13px"
+                    href="https://www.gogoanime1.com/home/anime-list"
+                    style={{fontSize: "13px"}}
                   >
                     Anime List
                 </a>
@@ -70,7 +70,7 @@ export default function Header() {
                   <a
                     className="latestManga"
                     href="loadlatest"
-                    style="font-size: 13px"
+                    style={{fontSize: '13px'}}
                   >
                     Latest Manga
                 </a>
@@ -93,19 +93,19 @@ export default function Header() {
           </div>
           <div
             id="search_result"
-            style="
-            display: none;
-            z-index: 100000;
-            padding: 20px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            color: #fff;
-            background: #233a50;
-            max-height: 400px;
-            border: 4px solid #020d18;
-          "
+            style={{
+              display: 'none',
+              zIndex: '100000',
+              padding: '20px',
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              color: '#fff',
+              background: '#233a50',
+              maxHeight: '400px',
+              border: "4px solid #020d18"
+            }}
           >
-            <ul style="overflow: hidden"></ul>
+            <ul style={{overflow: 'hidden'}}></ul>
           </div>
         </div>
       </header>

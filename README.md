@@ -12,3 +12,7 @@ You can try the original repo's deployment available at `https://mirai-projectsa
 Or deploy your own version ->
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ProjectSakura/mirai)
+
+#### Status
+
+A lot of work to be done left to port... also some changes like not directly manupulating the DOM

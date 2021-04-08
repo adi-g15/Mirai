@@ -2,8 +2,8 @@
 
 @import url("https://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-@import "plugins.css";
-@import "style.css";
+/* @import "plugins.css";
+@import "style.css"; */
 #status {
 	display: none;
 }
