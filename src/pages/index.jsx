@@ -17,37 +17,46 @@ export default function HomePage() {
 
   useEffect(() => {
     // Fetch Gogoanime popular anime links
-    fetch("https://www.gogoanime1.com/home/popular-animes")
-      .then(response => {
-        if (response.ok) {   // response.status >= 200 & < 300
-          return response.text();
-        } else {
-          throw Error(response.statusText);
-        }
-      })
-      .then(html => {
-        const $ = cheerio.load(html);
-        console.debug("Loaded... ", "Popular anime");
+    // fetch("https://www.gogoanime1.com/home/popular-animes")
+    //   .then(response => {
+    //     if (response.ok) {   // response.status >= 200 & < 300
+    //       return response.text();
+    //     } else {
+    //       throw Error(response.statusText);
+    //     }
+    //   })
+    //   .then(html => {
+    //     const $ = cheerio.load(html);
+    //     console.debug("Loaded... ", "Popular anime");
 
-        $(".big-list .wide-anime-box").each((i, el) => {
-          const anime = {};
-          const genre = [];
-          anime.picture = $(el).find(".anime-image").attr("style");
-          anime.link = $(el).find(".anime-image").attr("href");
-          anime.name = $(el).find(".wab-title a").text();
-          anime.description = $(el).find(".wab-desc").text();
-          $(el)
-            .find(".wab-links a")
-            .each((_, ex) => {
-              genre.push($(ex).text());
-            });
-          anime.genre = genre;
-          setPopularList(popularList => [...popularList, anime])
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    //     $(".big-list .wide-anime-box").each((i, el) => {
+    //       const anime = {};
+    //       const genre = [];
+    //       anime.picture = $(el).find(".anime-image").attr("style");
+    //       anime.link = $(el).find(".anime-image").attr("href");
+    //       anime.name = $(el).find(".wab-title a").text();
+    //       anime.description = $(el).find(".wab-desc").text();
+    //       $(el)
+    //         .find(".wab-links a")
+    //         .each((_, ex) => {
+    //           genre.push($(ex).text());
+    //         });
+    //       anime.genre = genre;
+    //       setPopularList(popularList => [...popularList, anime])
+    //     });
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
+    fetch("/api/popular-anime")
+      .then(res => res.json())
+      .then(data => {
+        console.log("received data");
+        console.log(data);
+        setPopularList(data);
+      }).catch(err => {
+            console.error(err);
+          })
 
     // Fetch Gogoanime latest up[date] links
     fetch("https://www.gogoanime1.com")
