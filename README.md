@@ -7,7 +7,7 @@ Using public sources for fetching data. This solves dependency on heroku
 
 ## Deployment
 
-You can try the deployment available at `adig15.herokuapp.com`, but that is severely limited, in number of calls allowed, but enough to try
+You can try the original repo's deployment available at `https://mirai-projectsakura.herokuapp.com/`, but that is severely limited, in number of calls allowed, but enough to try
 
 Or deploy your own version ->
 

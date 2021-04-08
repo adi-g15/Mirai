@@ -2,9 +2,8 @@
   "name": "mirai",
   "version": "10.16.0",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
-    "deploy_check": "node deploy.ign.js"
+    "start": "gatsby develop",
+    "build": "gatsby build"
   },
   "dependencies": {
     "base-64": "^1.0.0",
@@ -15,10 +14,12 @@
     "ejs": "^3.1.6",
     "express": "~4.17.1",
     "filereader": "^0.10.3",
+    "gatsby": "^2.32.11",
     "http-errors": "~1.8.0",
     "js-base64": "^3.6.0",
     "morgan": "~1.10.0",
     "node-fetch": "^2.6.1",
+    "react-helmet": "^6.1.0",
     "webtorrent": "^0.116.1"
   }
 }
