@@ -81,8 +81,8 @@ export default function Header() {
           </nav>
 
           <div className="top-search">
-            <select id="selector-val">
-              <option value="anime" selected>Anime</option>
+            <select id="selector-val" defaultValue="anime">
+              <option value="anime">Anime</option>
               <option value="manga">Manga</option>
             </select>
             <input

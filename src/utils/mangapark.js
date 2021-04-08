@@ -1,5 +1,5 @@
-const http = require("https");
-const cheerio = require("cheerio");
+import http from "https";
+import cheerio from "cheerio";
 
 // getImageList;
 // getMangaList;
@@ -9,7 +9,7 @@ const cheerio = require("cheerio");
 // getGenre;
 // getGenreManga;
 
-class MangaPark {
+export default class MangaPark {
   getLatestMangaData() {
     const url = "https://mangapark.net/latest";
     return new Promise((resolve, reject) => {
@@ -107,8 +107,8 @@ class MangaPark {
           }
         });
 
-        resp.on("error", () => {
-          console.log(error);
+        resp.on("error", error => {
+          console.error(error);
         });
       });
     });
@@ -361,7 +361,7 @@ class MangaPark {
                 .text(),
             });
           } catch (error) {
-            console.log(e);
+            console.error(error);
           }
         });
       });
@@ -566,5 +566,3 @@ class MangaPark {
     });
   }
 }
-
-module.exports = MangaPark;
