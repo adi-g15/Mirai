@@ -1,0 +1,26 @@
+@media (max-width: 768px) {
+    .movie-single .sticky-sb {
+        max-width: 180px;
+        position: absolute;
+        top: 25px;
+        right: 0px;
+    }
+}
+
+@media (max-width: 425px) {
+    .movie-single .sticky-sb {
+        max-width: 160px;
+        position: absolute;
+        top: -175px;
+        right: 104px;
+    }
+}
+
+@media (max-width: 375px) {
+    .movie-single .sticky-sb {
+        max-width: 160px;
+        position: absolute;
+        top: -175px;
+        right: 79px;
+    }
+}

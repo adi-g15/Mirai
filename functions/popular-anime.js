@@ -1,18 +1,18 @@
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 
-// domain/.netlify/functions/namaste
 exports.handler = async (event, context) => {
     try {
         const popularList = [];
+        console.log("Fetching popular anime...");
         const html = await fetch("https://www.gogoanime1.com/home/popular-animes")
-                                .then(response => {
-                                if (response.ok) {   // response.status >= 200 & < 300
-                                    return response.text();
-                                } else {
-                                    throw Error(response.statusText);
-                                }
-                                });
+            .then(response => {
+                if (response.ok) {   // response.status >= 200 & < 300
+                    return response.text();
+                } else {
+                    throw Error(response.statusText);
+                }
+            });
 
         console.log("Fetched popular anime");
         const $ = cheerio.load(html);
@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
     } catch (err) {
         console.error(err);
         return {
-            statusCode: err.code ?? 500,
+            statusCode: 500,
             body: err.msg || err.message || "Server Error"
         };
     }

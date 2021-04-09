@@ -16,38 +16,8 @@ export default function HomePage() {
   const [mangaUpdateList, setMangaUpdateList] = useState([]);
 
   useEffect(() => {
+    // CORS NEEDS TO BE HANDLED BY SERVER SIDE, SO WE NEED OUR SERVER
     // Fetch Gogoanime popular anime links
-    // fetch("https://www.gogoanime1.com/home/popular-animes")
-    //   .then(response => {
-    //     if (response.ok) {   // response.status >= 200 & < 300
-    //       return response.text();
-    //     } else {
-    //       throw Error(response.statusText);
-    //     }
-    //   })
-    //   .then(html => {
-    //     const $ = cheerio.load(html);
-    //     console.debug("Loaded... ", "Popular anime");
-
-    //     $(".big-list .wide-anime-box").each((i, el) => {
-    //       const anime = {};
-    //       const genre = [];
-    //       anime.picture = $(el).find(".anime-image").attr("style");
-    //       anime.link = $(el).find(".anime-image").attr("href");
-    //       anime.name = $(el).find(".wab-title a").text();
-    //       anime.description = $(el).find(".wab-desc").text();
-    //       $(el)
-    //         .find(".wab-links a")
-    //         .each((_, ex) => {
-    //           genre.push($(ex).text());
-    //         });
-    //       anime.genre = genre;
-    //       setPopularList(popularList => [...popularList, anime])
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
     fetch("/api/popular-anime")
       .then(res => res.json())
       .then(data => {
@@ -55,95 +25,33 @@ export default function HomePage() {
         console.log(data);
         setPopularList(data);
       }).catch(err => {
-            console.error(err);
-          })
+        console.error(err);
+      })
 
     // Fetch Gogoanime latest up[date] links
-    fetch("https://www.gogoanime1.com")
-      .then(response => {
-        if (response.ok) {   // response.status >= 200 & < 300
-          return response.text();
-        } else {
-          throw Error(response.statusText);
-        }
-      })
-      .then(html => {
-        const $ = cheerio.load(html);
+    fetch("/api/updated-links")
+      .then(res => res.json())
+      .then(data => {
         console.debug("Loaded UpdatedLinks");
+        const {
+          navList,
+          updateList,
+          newAnimeList
+        } = data;
 
-        $(".main-menu li").each((_, el) => {
-          const link = {
-            href: $(el).find("a").attr("href"),
-            text: $(el).find("a").text(),
-          };
-          setNavList(navList => [...navList, link]);
-        });
-
-        $(".animeList .nl-item").each((i, el) => {
-          const update = {
-            mainLink: $(el).find(".nli-image").attr("href"),
-            imageLink: $(el).find(".nli-image img").attr("src"),
-            epLink: $(el).find(".nli-ep").attr("href"),
-            epName: $(el).find(".nli-ep").text(),
-            epUpdate: $(el).find(".release").text()
-          };
-          setUpdateList(updateList => [...updateList, update]);
-        });
-
-        $(".tnTabber .bl-grid").each((i, el) => {
-          const genre = [];
-
-          $(el)
-            .find(".blb-links a")
-            .each((_, elv) => {
-              genre.push($(elv).text());
-            });
-
-          const newanime = {
-            animeLink: $(el).find(".blb-image").attr("href"),
-            imageLink: $(el).find(".blb-image img").attr("src"),
-            animeTitle: $(el).find(".blb-title").text(),
-            genre: genre
-          };
-          setNewAnimeList(newAnimeList => [...newAnimeList, newanime]);
-        });
+        setNavList(navList);
+        setUpdateList(updateList);
+        setNewAnimeList(newAnimeList);
       })
       .catch(err => {
         console.error(err);
       })
 
-    // Fetch Gogoanime latest up[date] links
-    fetch("https://www.gogoanime1.com/home/ongoing")
-      .then(response => {
-        if (response.ok) {   // response.status >= 200 & < 300
-          return response.text();
-        } else {
-          throw Error(response.statusText);
-        }
-      })
-      .then(html => {
-        const $ = cheerio.load(html);
-        console.debug("Loaded Ongoing Anime");
-
-        $(".big-list .bl-grid").each((i, el) => {
-          const genre = [];
-          $(el)
-            .find(".blb-links a")
-            .each((j, elj) => {
-              if (j <= 20) {
-                genre.push($(elj).text());
-              }
-            });
-
-          const ongoing = {
-            mainLink: $(el).find(".blb-image").attr("href"),
-            imageLink: $(el).find(".blb-image img").attr("src"),
-            title: $(el).find(".blb-title").text(),
-            genre: genre
-          };
-          setOngoingList(ongoingList => [...ongoingList, ongoing]);
-        });
-        // console.log(ongoingList);
+    // Fetch ongoing anime list
+    fetch("/api/on-going")
+      .then(res => res.json())
+      .then(list => {
+        setOngoingList(list)
       })
       .catch(err => {
         console.error(err);
@@ -180,21 +88,21 @@ export default function HomePage() {
           <div className="row">
             <div className="slider-single-item">
               {
-                popularList.map(item => {
+                popularList.map((item, index) => {
                   const picture = item.picture.split('https://');
                   const picture2 = picture[1].split("')");
 
                   let i = 0;
                   let color = 'blue';
                   return (
-                    <div className="movie-item">
+                    <div className="movie-item" key={index}>
                       <div className="row">
                         <div className="col-md-8 col-sm-12 col-xs-12">
                           <div className="title-in">
                             <div className="cate">
                               {
                                 // @todo - This loop will always create the same elements, i believe, check later
-                                item.genre.map(gen => {
+                                item.genre.map((gen, i) => {
                                   if (i == 1) { color = 'yell'; }
                                   if (i % 2 == 0) { color = 'orange'; }
                                   if (i % 3 == 0) { color = 'blue'; }
@@ -204,7 +112,7 @@ export default function HomePage() {
                                   i++;
 
                                   return (
-                                    <span class={color}>
+                                    <span class={color} key={i}>
                                       <a href="#">
                                         {gen}
                                       </a>
@@ -268,9 +176,9 @@ export default function HomePage() {
           */}
             <div className="slick-multiItemSlider">
               {
-                updateList.map(item => {
+                updateList.map((item, i) => {
                   return (
-                    <div className="movie-item">
+                    <div className="movie-item" key={i}>
                       <div className="mv-img">
                         <a href="#">
                           <img src={item.imageLink} style={{ width: '300px', height: '400px' }} />
@@ -316,11 +224,11 @@ export default function HomePage() {
           </div> */}
             <div className="slick-multiItemSlider ongoing">
               {
-                ongoingList.map(item => {
+                ongoingList.map((item, index) => {
                   let i = 0, color = 'blue';
 
                   return (
-                    <div className="movie-item">
+                    <div className="movie-item" key={index}>
                       <div className="mv-img">
                         <a href="#">
                           <img src={item.imageLink} style={{ width: '300px', height: '400px' }} />
@@ -328,7 +236,7 @@ export default function HomePage() {
                       </div>
                       <div className="title-in">
                         {
-                          item.genre.map(gen => {
+                          item.genre.map((gen, i) => {
                             if (i == 1) { color = 'yell'; }
                             if (i % 2 == 0) { color = 'orange'; }
                             if (i % 3 == 0) { color = 'blue'; }
@@ -337,7 +245,7 @@ export default function HomePage() {
 
                             ++i;
                             return (
-                              <div className="cate">
+                              <div className="cate" key={i}>
                                 <span className={color} style={{ color: '#fff', fontWeight: '600', fontSize: '10px' }}>
                                   {gen}
                                 </span>
@@ -386,9 +294,9 @@ export default function HomePage() {
                     <div className="row">
                       <div className="slick-multiItem">
                         {
-                          mangaUpdateList.map(item => {
+                          mangaUpdateList.map((item, i) => {
                             return (
-                              <div className="slide-it">
+                              <div className="slide-it" key={i}>
                                 <div className="movie-item">
                                   <div className="mv-img">
                                     <img src={item.imageLink} alt="" style={{ width: '200px', height: '270px' }} />
@@ -428,9 +336,9 @@ export default function HomePage() {
                     <div className="row">
                       <div className="slick-multiItem">
                         {
-                          newAnimeList.map(item => {
+                          newAnimeList.map((item, i) => {
                             return (
-                              <div className="slide-it">
+                              <div className="slide-it" key={i}>
                                 <div className="movie-item">
                                   <div className="mv-img">
                                     <img src={item.imageLink} alt="" style={{ width: '200px', height: '270px' }} />
@@ -447,8 +355,8 @@ export default function HomePage() {
                                     </a></h6>
                                     <p style={{ lineHeight: '0px', paddingTop: '5px' }}>
                                       {
-                                        item.genre.map(value => {
-                                          return (<p>{value}</p>);
+                                        item.genre.map((value, i) => {
+                                          return (<p key={i}>{value}</p>);
                                         })
                                       }
                                     </p>

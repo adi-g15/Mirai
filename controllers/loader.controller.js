@@ -1,7 +1,6 @@
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 
-let seriesDetails = {};
 let navList = [];
 
 // Fetch Gogoanime latest header links
@@ -113,51 +112,6 @@ const LoaderController = (req, res, next) => {
 };
 
 const RenderLoadEpisodes = (req, res, next) => {
-    let url = req.query.url;
-    let episodeList = [];
-    let detailer = [];
-    fetch(url)
-        .then(response => {
-            if (response.ok) {   // response.status >= 200 & < 300
-                return response.text();
-            } else {
-                throw Error(response.statusText);
-            }
-        })
-        .then(html => {
-            const $ = cheerio.load(html);
-            //Get series details
-            seriesDetails.name = $(".anime-title").text();
-            seriesDetails.details = $(".anime-details").text();
-            seriesDetails.image = $(".animeDetail-image").find("img").attr("src");
-            seriesDetails.started = $(".animeDetail-tags").children().last().text();
-            $(".animeDetail-tags .animeDetail-item").each((i, el) => {
-                let detailsx = {};
-                detailsx.name = $(el).find("span").text();
-                detailsx.value = $(el).text();
-                detailer.push(detailsx);
-            });
-            //Get episodes list and links
-            let episodeDiv = $(".tnContent").attr("style", "display: none;");
-            episodeDiv.find("li").each((i, el) => {
-                let link = {};
-                link.href = $(el).find("a").attr("href");
-                link.episode = $(el).find("a").text();
-                episodeList.push(link);
-            });
-
-            res.render("loadepisode", {
-                title: "Mirai",
-                navList: navList,
-                episodeList: episodeList,
-                seriesDetails: seriesDetails,
-                detailer: detailer,
-            });
-        })
-        .catch(err => {
-            console.error(err);
-            res.sendStatus(err.status || 500);
-        })
 };
 
 const RenderNewLoader = (req, res, next) => {

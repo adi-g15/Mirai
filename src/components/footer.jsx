@@ -39,6 +39,7 @@ export default function Footer() {
     document.querySelector('.fetchVedio').addEventListener('click', e => {
       var link = e.target.href;
       e.preventDefault();
+      // TODO: loadvideo is now a react component, instead of passing this ?url as query parameter, later use <Link> and pass this as props to the component
       document.location.href = 'loadvideo?url=' + link;
     });
 
@@ -71,23 +72,23 @@ export default function Footer() {
               q: input
             })
           })
-          .then(res => res.json())
-          .then(({data}) => {
-            const result = document.querySelector('#search_result ul');
-            result.innerHTML = '';
-            document.getElementById('search_result').style.display = 'block';
-            data.forEach( val => {
-              const li = document.createElement('li');
-              li.innerHTML = `<a
+            .then(res => res.json())
+            .then(({ data }) => {
+              const result = document.querySelector('#search_result ul');
+              result.innerHTML = '';
+              document.getElementById('search_result').style.display = 'block';
+              data.forEach(val => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a
                                 class="latestlink"
                                 style="color:#fff;font-family: 'Dosis', sans-serif;font-weight: bold;text-transform: uppercase;cursor: pointer;"
                                 href="loadpage?url=https://www.gogoanime1.com/watch/${val.seo_name}"
                               >
                                 ${val.name}
                               </a>`;
-              result.appendChild(li);
-            });
-          })
+                result.appendChild(li);
+              });
+            })
         }
         else {
           document.getElementById('search_result').style.display = 'none';
@@ -99,18 +100,18 @@ export default function Footer() {
           var string = '';
           e.preventDefault();
           fetch(url, {
-            body: JSON.stringify({q: input})
+            body: JSON.stringify({ q: input })
           })
-          .then(res => res.json())
-          .then(data => {
-            const result = document.querySelector('#search_result ul');
-            result.innerHTML = '';
-            document.getElementById('search_result').style.display = 'block';
-            console.log(data);
-            data.forEach((val) => {
-              const arr = val.link.replace("https://mangapark.net/manga/", "");
-              const li = document.createElement('li');
-              li.innerHTML = `<img
+            .then(res => res.json())
+            .then(data => {
+              const result = document.querySelector('#search_result ul');
+              result.innerHTML = '';
+              document.getElementById('search_result').style.display = 'block';
+              console.log(data);
+              data.forEach((val) => {
+                const arr = val.link.replace("https://mangapark.net/manga/", "");
+                const li = document.createElement('li');
+                li.innerHTML = `<img
                                 src="${val.thumb}"
                                 style="position:relative;top:5px;width:40px;height:56px;margin-right:10px;display:inline-block;"
                               >
@@ -123,9 +124,9 @@ export default function Footer() {
                                   ${arr}
                                 </a>
                               </div>`;
-              result.appendChild(li);
+                result.appendChild(li);
+              })
             })
-        })
         }
         else {
           document.querySelector('#search_result').style.display = 'none';

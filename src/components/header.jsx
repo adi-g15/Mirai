@@ -9,7 +9,7 @@ export default function Header() {
       <div id="preloader">
         <img className="logo" src="images/logo3.ico" alt="" width="119" height="58" />
 
-        <div className="text-center" style={{color: '#fff', marginTop: '60px'}}>
+        <div className="text-center" style={{ color: '#fff', marginTop: '60px' }}>
           <h1>Mirai</h1>
         </div>
       </div>
@@ -61,7 +61,7 @@ export default function Header() {
                   <a
                     className="animelist"
                     href="https://www.gogoanime1.com/home/anime-list"
-                    style={{fontSize: "13px"}}
+                    style={{ fontSize: "13px" }}
                   >
                     Anime List
                 </a>
@@ -70,7 +70,7 @@ export default function Header() {
                   <a
                     className="latestManga"
                     href="loadlatest"
-                    style={{fontSize: '13px'}}
+                    style={{ fontSize: '13px' }}
                   >
                     Latest Manga
                 </a>
@@ -105,7 +105,7 @@ export default function Header() {
               border: "4px solid #020d18"
             }}
           >
-            <ul style={{overflow: 'hidden'}}></ul>
+            <ul style={{ overflow: 'hidden' }}></ul>
           </div>
         </div>
       </header>
