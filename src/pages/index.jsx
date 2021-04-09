@@ -2,10 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import Helmet from "react-helmet";
 import Header from '../components/header';
 import Footer from '../components/footer';
-import cheerio from "cheerio";
-import mangaPark from "../utils/mangapark"
-
-const mangaParkObj = new mangaPark();
 
 export default function HomePage() {
   const [popularList, setPopularList] = useState([]);
@@ -57,8 +53,15 @@ export default function HomePage() {
         console.error(err);
       })
 
-    mangaParkObj.getMangaList(1).then(mangas => setMangaUpdateList(mangas.LatestManga))
-  }, [])
+      fetch("/api/mangapark/getMangaList?pageNo=1")
+        .then(res => res.json())
+        .then(data => {
+          setMangaUpdateList(data.LatestManga);
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    }, [])
 
   return (
     <>
