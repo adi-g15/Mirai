@@ -98,7 +98,7 @@ export default function LoadVideo({ url }) {
                       </p>
                     </video>
 
-                    <a href={episodeDetails.downloadLink} target="_blank" className="item item-1 redbtn download-update"
+                    <a href={episodeDetails.downloadLink} rel="noreferrer" target="_blank" className="item item-1 redbtn download-update"
                       style={{marginTop:'20px',display:'inline-block', padding:'10px'}} download> <i className="fa fa-download"></i>
                                         Download Episode</a>
 
@@ -146,7 +146,7 @@ export default function LoadVideo({ url }) {
                       <div className="blog-item-style-1">
                         <img src="images/pfp.jpg" alt="" style={{ width: '190px', height:'190px'}} />
                         <div className="blog-it-infor">
-                          <h3><a href="#">Project Sakura</a></h3>
+                          <h3><span style={{cursor: 'pointer'}}>Project Sakura</span></h3>
                           <span className="time">Delhi, India</span>
                           <p>Sakura provides quick timely updates and more customizations with the same stability as
                           Lineage OS.<i className="fa fa-thumbs-up"></i> If you'd like to donate, please follow here!</p>

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Helmet from "react-helmet";
 import Header from '../components/header';
 import Footer from '../components/footer';
+import { useNavigate } from "@reach/router";
 
 export default function HomePage() {
   const [popularList, setPopularList] = useState([]);
@@ -10,6 +11,7 @@ export default function HomePage() {
   const [navList, setNavList] = useState([]);
   const [ongoingList, setOngoingList] = useState([]);
   const [mangaUpdateList, setMangaUpdateList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // CORS NEEDS TO BE HANDLED BY SERVER SIDE, SO WE NEED OUR SERVER
@@ -53,15 +55,15 @@ export default function HomePage() {
         console.error(err);
       })
 
-      fetch("/api/mangapark/getMangaList?pageNo=1")
-        .then(res => res.json())
-        .then(data => {
-          setMangaUpdateList(data.LatestManga);
-        })
-        .catch(err => {
-          console.error(err);
-        })
-    }, [])
+    fetch("/api/mangapark/getMangaList?pageNo=1")
+      .then(res => res.json())
+      .then(data => {
+        setMangaUpdateList(data.LatestManga);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }, [])
 
   return (
     <>
@@ -305,14 +307,35 @@ export default function HomePage() {
                                     <img src={item.imageLink} alt="" style={{ width: '200px', height: '270px' }} />
                                   </div>
                                   <div className="hvr-inner">
-                                    <a className="manga" href={item.mangaLink}>
-                                      Read Now<i className="ion-android-arrow-dropright"></i> </a>
+                                    <a
+                                      className="manga"
+                                      href={item.mangaLink}
+                                      onClick={e => {
+                                        const link = e.target.href;
+                                        e.preventDefault();
+                                        navigate(`loadmanga?url=${link}`, { replace: true });
+                                        // document.location.href = 'loadmanga?url=' + link;
+                                      }}
+                                    >
+                                      Read Now<i className="ion-android-arrow-dropright"></i>
+                                    </a>
                                   </div>
                                   <div className="title-in">
-                                    <h6><a className="manga" href={item.mangaLink}
-                                      style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'left' }}>
-                                      {item.mangaName}
-                                    </a></h6>
+                                    <h6>
+                                      <a
+                                        className="manga"
+                                        href={item.mangaLink}
+                                        style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'left' }}
+                                        onClick={e => {
+                                          var link = e.target.href;
+                                          e.preventDefault();
+                                          navigate(`loadmanga?url=${link}`, { replace: true });
+                                          // document.location.href = 'loadmanga?url=' + link;
+                                        }}
+                                      >
+                                        {item.mangaName}
+                                      </a>
+                                    </h6>
                                     <p style={{ lineHeight: '0px', paddingTop: '5px' }}>
                                     </p>
                                   </div>

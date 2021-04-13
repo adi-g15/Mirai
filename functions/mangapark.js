@@ -9,7 +9,7 @@ const getMangaList = require("./mangapark/getMangaList");
 const search = require("./mangapark/search");
 
 exports.handler = async (event, context) => {
-    const subPath = event.path.split('/')[3] ?? '';
+    const subPath = event.path.split('/')[3] || ''; // "/api/mangapark/subpath"
     console.log(event.path);
 
     if(subPath.startsWith("getGenre")) {

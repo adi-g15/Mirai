@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "@reach/router";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import "../styles/load-episodes.css"
@@ -9,6 +10,7 @@ export default function LoadPage() {
   const [episodeList, setEpisodeList] = useState([]);
   const [seriesDetails, setSeriesDetails] = useState({ name: '', details: '', detailHtml: '', image: '', started: '', });
   const [detailer, setDetailer] = useState([]);
+  const navigate = useNavigate();
 
   useRef(() => {
     document.getElementById("startwatching").addEventListener('click', (e) => {
@@ -96,7 +98,17 @@ export default function LoadPage() {
                                   <>
                                     <div className="cast-it">
                                       <div className="cast-left">
-                                        <a className="fetchVedio" href={item.href}>
+                                        <a
+                                          className="fetchVedio"
+                                          href={item.href}
+                                          onClick={e => {
+                                            var link = e.target.href;
+                                            e.preventDefault();
+                                            // TODO: loadvideo is now a react component, instead of passing this ?url as query parameter, later use <Link> and pass this as props to the component
+                                            navigate('loadvideo?url=' + link, {replace: true})
+                                            // document.location.href = 'loadvideo?url=' + link;
+                                          }}
+                                        >
                                           {item.episode}
                                         </a>
                                       </div>
@@ -123,11 +135,22 @@ export default function LoadPage() {
                                   return (
                                     <div className="cast-it" key={i}>
                                       <div className="cast-left">
-                                        <a className="fetchVedio" href="#"><span style={{ color: '#dcf836' }}>
-                                          {item.name}
-                                        </span><span style={{ color: '#dd003f' }} >
+                                        <a
+                                          className="fetchVedio"
+                                          href="#"
+                                          onClick={e => {
+                                            var link = e.target.href;
+                                            e.preventDefault();
+                                            navigate(`loadmanga?url=${link}`, { replace: true });
+                                            // document.location.href = 'loadmanga?url=' + link;
+                                          }}
+                                        >
+                                          <span style={{ color: '#dcf836' }}>
+                                            {item.name}
+                                          </span><span style={{ color: '#dd003f' }} >
                                             {x['1']}
-                                          </span></a>
+                                          </span>
+                                        </a>
                                       </div>
                                     </div>)
                                 })

@@ -36,22 +36,6 @@ const RenderLoadManga = async (req, res, next) => {
     }
 };
 
-const RenderViewManga = async (req, res, next) => {
-    try{
-        const url = req.query.url;
-        const image = await mangaParkObj.getImageList(url);
-        const information = await mangaParkObj.getChapterInfo(url);
-        res.render("viewmanga", {
-            title: "Anime Master",
-            images: image.images,
-            details: information,
-        });
-    }
-    catch(err){
-        console.log(err);
-    }
-};
-
 module.exports = {
     RenderLatestManga,
     RenderLoadManga,
