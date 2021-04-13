@@ -1,4 +1,7 @@
-exports.handler = (event, context) => {
+const fetch = require("node-fetch");
+const cheerio = require("cheerio");
+
+exports.handler = async (event, context) => {
     // Fetch ongoing anime list
     const ongoingList = [];
 

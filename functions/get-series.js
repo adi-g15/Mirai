@@ -1,4 +1,4 @@
-const { default: fetch } = require("node-fetch");
+const fetch = require("node-fetch");
 
 exports.handler = async (event, context) => {
     const { url } = event.queryStringParameters;
@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
                 }
             })
 
-        const $ = cheerio.load(html);
+        let $ = cheerio.load(html);
         //Get episodes list and links
         let episodeDiv = $(".ci-contents").last(".check-list");
         episodeDiv.find("li").each((_, el) => {
@@ -46,7 +46,8 @@ exports.handler = async (event, context) => {
                     throw Error(response.statusText);
                 }
             })
-        const $ = cheerio.load(html);
+
+        $ = cheerio.load(html);
 
         const episodeDetails = {
             name: $(".vmn-title").find("h1").text(),

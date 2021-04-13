@@ -2,13 +2,14 @@ const getGenre = require("./mangapark/getGenre");
 const getGenreManga = require("./mangapark/getGenreManga");
 const getImageList = require("./mangapark/getImageList");
 const getLatestChapter = require("./mangapark/getLatestChapter");
+const getLatestMangaData = require("./mangapark/getLatestMangaData");
 const getChapterInfo = require("./mangapark/getChapterInfo")
 const getMangaInfo = require("./mangapark/getMangaInfo");
 const getMangaList = require("./mangapark/getMangaList");
 const search = require("./mangapark/search");
 
 exports.handler = async (event, context) => {
-    const subPath = event.path.split('/')[3];
+    const subPath = event.path.split('/')[3] ?? '';
     console.log(event.path);
 
     if(subPath.startsWith("getGenre")) {
@@ -19,6 +20,8 @@ exports.handler = async (event, context) => {
         return await getImageList.handler(event, context);
     } else if(subPath.startsWith("getLatestChapter")) {
         return await getLatestChapter.handler(event, context);
+    } else if(subPath.startsWith("getLatestMangaData")) {
+        return await getLatestMangaData.handler(event, context);
     } else if(subPath.startsWith("getMangaInfo")) {
         return await getMangaInfo.handler(event, context);
     } else if(subPath.startsWith("getMangaList")) {

@@ -5664,8 +5664,12 @@ ul {
 }
 /*series single hero*/
 .sr-single-hero {
+  /*
+   TODO @adig15 - This sr-single.jpg file not found, do something about it
+
   background: url('../images/uploads/sr-single.jpg') no-repeat;
   height: 598px;
+  */
 }
 .hero3 {
   background: url('../images/uploads/celeb-hero-single.jpg') no-repeat;

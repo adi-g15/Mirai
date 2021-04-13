@@ -50,7 +50,7 @@ export default function Footer() {
     });
 
     document.getElementById('selector-val').addEventListener('change', e => {
-      if (e.target.value == 'anime') {
+      if (e.target.value === 'anime') {
         document.getElementById('searchInput').placeholder = 'Search for an Anime, that you would like to search';
       }
       else {
@@ -62,7 +62,7 @@ export default function Footer() {
       const input = e.target.value;
       const selected = document.getElementById('selector-val').value;
       let url = '';
-      if (selected == 'anime') {
+      if (selected === 'anime') {
         url = 'search';
         if (input !== '') {
           let string = '';
@@ -153,7 +153,6 @@ export default function Footer() {
       </footer>
 
       {/* end of footer section */}
-      <script src="javascripts/jquery.js"></script>
       <script src="javascripts/plugins.js"></script>
       <script src="javascripts/plugins2.js"></script>
       <script src="javascripts/custom.js"></script>

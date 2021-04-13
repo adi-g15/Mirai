@@ -10,9 +10,10 @@ exports.handler = async (event, context) => {
                 if (res.ok) { // res.status >= 200 && res.status < 300
                     return res.text();
                 } else {
-                    throw Error("Response Code: " + res.status)
+                    throw Error("Response Code: " + res.status) // @NOTE - May have been blocked by `cloudflare`
                 }
             })
+            console.log(html);
 
         const $ = cheerio.load(html);
 

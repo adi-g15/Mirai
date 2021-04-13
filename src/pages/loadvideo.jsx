@@ -110,7 +110,7 @@ export default function LoadVideo({ url }) {
                       return (
                         <div key={i} class={item.href === url ? "item episodeDiv slick-current slick-active" : "item episodeDiv"} link={item.href}>
                           <div className="trailer-img">
-                            <img src="images/uploads/play-vd.png" style={{ width:'40px'}} />
+                            <img src="images/uploads/play-vd.png" alt="play-video" style={{ width:'40px'}} />
                           </div>
                           <div className="trailer-infor">
                             <h4 className="desc">

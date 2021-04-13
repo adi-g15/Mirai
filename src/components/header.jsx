@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/global.css";
+import Logo from "../images/logo3.ico";
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
       {/* Originally Mirrored from haintheme.com/demo/html/bustter/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Jun 2019 15:14:19 GMT */}
       {/* preloading */}
       <div id="preloader">
-        <img className="logo" src="images/logo3.ico" alt="" width="119" height="58" />
+        <img className="logo" src={Logo} alt="" width="119" height="58" />
 
         <div className="text-center" style={{ color: '#fff', marginTop: '60px' }}>
           <h1>Mirai</h1>
