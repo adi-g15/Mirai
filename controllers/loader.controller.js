@@ -27,52 +27,6 @@ fetch("https://www.gogoanime1.com")
     })
 
 const LoaderController = (req, res, next) => {
-    let latestk = [];
-    let url = req.body.link;
-    fetch(url)
-        .then(response => {
-            if (response.ok) {   // response.status >= 200 & < 300
-                return response.text();
-            } else {
-                throw Error(response.statusText);
-            }
-        })
-        .then(html => {
-            const $ = cheerio.load(html);
-            $(".truyen-list .list-truyen-item-wrap").each((j, eld) => {
-                let item = {};
-                item.mangaLink = $(eld).children().first("a").attr("href");
-                item.imageLink = $(eld).find("img").attr("src");
-                item.views = $(eld).find(".aye_icon").text();
-                item.description = $(eld).find("p").text();
-                item.title = $(eld).find("h3 a").text();
-                item.update = $(eld).find(".list-story-item-wrap-chapter").text();
-                item.updateLink = $(eld)
-                    .find(".list-story-item-wrap-chapter")
-                    .attr("href");
-                latestk.push(item);
-            });
-            let total = $(".panel_page_number .group_qty").find("a").text();
-            let linksk = [];
-            $(".panel_page_number .group_page a").each((y, elx) => {
-                let link = {};
-                link.text = $(elx).text();
-                link.href = $(elx).attr("href");
-                link.class = $(elx).attr("class");
-                linksk.push(link);
-            });
-
-            res.render("latest", {
-                title: "Mirai",
-                latest: latestk,
-                total: total,
-                links: linksk,
-            });
-        })
-        .catch(err => {
-            console.error(err);
-            res.sendStatus(err.status || 500);
-        })
 };
 
 const RenderNewLoader = (req, res, next) => {

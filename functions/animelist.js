@@ -2,9 +2,10 @@ const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 
 exports.handler = async (event, context) => {
-    const { url } = event.queryStringParameters['url'] || "https://www.gogoanime1.com/home/anime-list";
+    const url = event.queryStringParameters['url'] || "https://www.gogoanime1.com/home/anime-list";
     const series = [];
 
+    console.log(url);
     try {
         const html = await fetch(url)
         .then(res => res.text());

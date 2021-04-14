@@ -56,6 +56,7 @@ export default function ViewManga({ url }) {  // TODO - Earlier passed using req
             */}
 
 
+            // TODO - SEE THAT THIS PAGE ACTUALLY CALLS ITSELF, IN NEXT PAGE AND PREV PAGE BUTTONS (this was such in the original version), implement next and prev natively to react
   return (
     <>
       <Header />

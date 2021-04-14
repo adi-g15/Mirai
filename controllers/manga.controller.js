@@ -2,16 +2,6 @@ const mangaPark = require("../utils/mangapark");
 const mangaParkObj = new mangaPark();
 
 const RenderLatestManga = async (req, res, next) => {
-    try{
-        const data = await mangaParkObj.getLatestMangaData();
-        res.render("latest", {
-            title: "Mirai",
-            latest: data.LatestManga,
-        });
-    }
-    catch(err){
-        console.log(err);
-    }
 };
 
 const RenderLoadManga = async (req, res, next) => {
